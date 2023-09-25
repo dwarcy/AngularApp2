@@ -25,9 +25,14 @@
               "src/assets"
             ],
             "styles": [
+              "/home/renata/Documentos/angular/projetos/app2/node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "/home/renata/Documentos/angular/projetos/app2/node_modules/tether/dist/js/tether.min.js",
+              "/home/renata/Documentos/angular/projetos/app2/node_modules/jquery/dist/jquery.min.js",
+              "/home/renata/Documentos/angular/projetos/app2/node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
