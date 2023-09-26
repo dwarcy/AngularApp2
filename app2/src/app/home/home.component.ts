@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { OfertasService } from '../ofertas.service';
 
 import { Oferta } from '../shared/oferta.model';
@@ -9,16 +9,29 @@ import { Oferta } from '../shared/oferta.model';
   styleUrls: ['./home.component.css'],
   providers: [ OfertasService ]
 })
-export class HomeComponent {
 
-  public ofertas: Oferta[]
+@Injectable()
+export class HomeComponent implements OnInit{
+
+  public ofertas: Array<Oferta>
 
   constructor(private ofertasService: OfertasService) {
 
   }
 
   ngOnInit(){
-    this.ofertas = this.ofertasService.getOfertas()
+    
+    //this.ofertas = this.ofertasService.getOfertas()
+    //console.log(this.ofertas)
+
+    this.ofertasService.getOfertas()
+      .then(( ofertas: Oferta[] ) => { 
+        this.ofertas = ofertas 
+      })
+      .catch(
+        ( param: any ) => { console.log(param) }      
+      )
+      
   }
 
 }
