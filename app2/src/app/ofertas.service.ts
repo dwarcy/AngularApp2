@@ -14,14 +14,11 @@ export class OfertasService {
     public getOfertas(): Promise<Oferta[]> {
         
         // efetuar uma requisicao http
-        let b = this.http.get('http://localhost:3000/ofertas')
-        
-        return lastValueFrom(b)
+        let x = lastValueFrom(this.http.get('http://localhost:3000/ofertas'))
             .then((resposta: any) => {
-                //trasforma a promise recebida em um json
-                return resposta.json()
+                return resposta //retira o .json() pois o retorno http já é um json
             })
-
+        return x
         // retornar uma promise Oferta[]
 
     }
