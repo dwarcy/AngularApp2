@@ -14,6 +14,8 @@ import { DiversaoComponent } from './diversao/diversao.component';
 import { RestaurantesComponent } from './restaurantes/restaurantes.component';
 import { OfertaComponent } from './oferta/oferta.component';
 import { OfertasService } from './ofertas.service';
+import { ComoUsarComponent } from './oferta/como-usar/como-usar.component';
+import { OndeFIcaComponent } from './oferta/onde-fica/onde-fica.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { OfertasService } from './ofertas.service';
     DiversaoComponent,
     RestaurantesComponent,
     OfertaComponent,
+    ComoUsarComponent,
+    OndeFIcaComponent,
   ],
   imports: [
     BrowserModule,

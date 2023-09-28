@@ -2,10 +2,12 @@ import { HttpClient } from "@angular/common/http"
 import { Injectable } from "@angular/core"
 import { Oferta } from "./shared/oferta.model"
 
-import { lastValueFrom } from "rxjs"
+import { last, lastValueFrom } from "rxjs"
 
 @Injectable()
 export class OfertasService {
+
+    private url_api = 'http://localhost:3000'
 
     constructor(private http:HttpClient) {
 
@@ -14,7 +16,7 @@ export class OfertasService {
     public getOfertas(): Promise<Oferta[]> {
         
         // efetuar uma requisicao http
-        let x = lastValueFrom(this.http.get('http://localhost:3000/ofertas?destaque=true'))
+        let x = lastValueFrom(this.http.get(`${this.url_api}/ofertas?destaque=true`))
             .then((resposta: any) => {
                 return resposta //retira o .json() pois o retorno http já é um json
             })
@@ -26,7 +28,7 @@ export class OfertasService {
     public getOfertasPorCategoria(categoria: string): Promise<Oferta[]> {
 
         //a recebe a requisição http já transformada de json para Promise
-        let a = lastValueFrom(this.http.get(`http://localhost:3000/ofertas?categoria=${categoria}`))
+        let a = lastValueFrom(this.http.get(`${this.url_api}/ofertas?categoria=${categoria}`))
             .then((resposta: any) => { return resposta })
         return a
     
@@ -34,12 +36,32 @@ export class OfertasService {
 
     public getOfertaPorId(id: number): Promise<Oferta> {
 
-        let b = lastValueFrom(this.http.get(`http://localhost:3000/ofertas?id=${id}`))
+        let b = lastValueFrom(this.http.get(`${this.url_api}/ofertas?id=${id}`))
             .then((resposta: any) => { 
-                console.log(resposta[0])
                 return resposta[0]
             })
         return b
+
+    }
+
+    public getComoUsarOfertaPorId(id: number): Promise<string> {
+
+        //recebe o observable transformado em Promise
+        let c = lastValueFrom(this.http.get(`${this.url_api}/como-usar?id=${id}`))
+            .then((resposta: any) => {
+                return resposta[0].descricao 
+            })
+        return c
+
+    }
+
+    public getOndeFicaPorId(id: number): Promise<string> {
+
+        let d = lastValueFrom(this.http.get(`${this.url_api}/onde-fica?id=${id}`))
+            .then((resposta: any) => {
+                return resposta[0].descricao
+            })
+        return d
 
     }
 
