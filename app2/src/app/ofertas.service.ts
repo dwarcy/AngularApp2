@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http"
 import { Injectable } from "@angular/core"
 import { Oferta } from "./shared/oferta.model"
 
-import { last, lastValueFrom } from "rxjs"
+import { Observable, lastValueFrom, map, retry } from "rxjs"
 
 @Injectable()
 export class OfertasService {
@@ -39,7 +39,7 @@ export class OfertasService {
         let b = lastValueFrom(this.http.get(`${this.url_api}/ofertas?id=${id}`))
             .then((resposta: any) => { 
                 return resposta[0]
-            })
+            }) 
         return b
 
     }
@@ -62,6 +62,16 @@ export class OfertasService {
                 return resposta[0].descricao
             })
         return d
+
+    }
+
+    public pesquisaOfertas(termo: string): Observable<Oferta[]> {
+        return this.http.get(`${this.url_api}/ofertas?descricao_oferta_like=${termo}`) //método get retorna um obsevable do tipo response
+            //necessario transformar esse observable em uma string de Oferta
+            .pipe(
+                retry(10),
+                map((resposta: any) => resposta)
+            )
 
     }
 

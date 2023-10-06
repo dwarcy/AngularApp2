@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { Oferta } from '../shared/oferta.model';
 import { OfertasService } from '../ofertas.service';
 
@@ -8,6 +8,8 @@ import { OfertasService } from '../ofertas.service';
   styleUrls: ['./diversao.component.css'],
   providers: [ OfertasService ]
 })
+
+@Injectable()
 export class DiversaoComponent {
 
   public ofertas: Oferta[]

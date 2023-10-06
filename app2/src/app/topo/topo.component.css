@@ -25,4 +25,13 @@
 
 .navbar {
     background-color: #FFF;
+    margin-top: 5px
+}
+
+.pesquisa {
+    margin-top: 15px;
+}
+
+.carrinho {
+    margin-top: 12px;
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { OfertasService } from 'src/app/ofertas.service';
@@ -9,6 +9,8 @@ import { OfertasService } from 'src/app/ofertas.service';
   styleUrls: ['./como-usar.component.css'],
   providers: [ OfertasService ]
 })
+
+@Injectable()
 export class ComoUsarComponent {
 
   public comoUsar: string = ''
