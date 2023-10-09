@@ -17,6 +17,10 @@ import { OfertasService } from './ofertas.service';
 import { ComoUsarComponent } from './oferta/como-usar/como-usar.component';
 import { OndeFIcaComponent } from './oferta/onde-fica/onde-fica.component';
 
+//pipe
+import { DescricaoReduzida } from './util/descricao-reduzida.pipe';
+import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +32,8 @@ import { OndeFIcaComponent } from './oferta/onde-fica/onde-fica.component';
     OfertaComponent,
     ComoUsarComponent,
     OndeFIcaComponent,
+    DescricaoReduzida,
+    OrdemCompraComponent,
   ],
   imports: [
     BrowserModule,

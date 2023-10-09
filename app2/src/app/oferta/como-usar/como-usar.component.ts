@@ -24,11 +24,14 @@ export class ComoUsarComponent {
 
   ngOnInit() {
 
-    this.ofertasService.getComoUsarOfertaPorId(this.route.parent.snapshot.params['id'])
+    this.route.parent.params.subscribe((parametros: any) => {
+      this.ofertasService.getComoUsarOfertaPorId(parametros.id)
       .then((resposta: string) => {
         this.comoUsar = resposta
       })
+    })
 
+    
   }
 
 }

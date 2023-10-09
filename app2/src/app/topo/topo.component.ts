@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { OfertasService } from '../ofertas.service';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 import { Oferta } from '../shared/oferta.model';
 
-import { switchMap } from 'rxjs/operators';
+import { catchError, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-topo',
@@ -24,20 +24,36 @@ export class TopoComponent {
 
     this.ofertas = this.subjectPesquisa //retorno Oferta[]
       .pipe(
+        debounceTime(500),  //executa a ação do switchMap após 1 segundo
+        distinctUntilChanged(),
         switchMap((termo: string) => {
-          console.log('requisição http para api')
+          
+          if(termo.trim() === ''){
+            //retorna um observable de <Ofertas[]> vazio
+            let a = of<Oferta[]>([])
+            return a
+          }
+
           return this.ofertasService.pesquisaOfertas(termo)
+
+        }),
+        catchError((err: any) => {
+          let b = of<Oferta[]>([])
+          return b
         })
       )
-
-    this.ofertas.subscribe((ofertas: Oferta[]) => console.log(ofertas))
 
   }
 
   public pesquisa(termoDaBusca: string): void {
 
-    console.log('keyup caracter: ', termoDaBusca)
     this.subjectPesquisa.next(termoDaBusca)
+
+  }
+
+  public limpaPesquisa(): void {
+
+    this.subjectPesquisa.next('')
 
   }
 

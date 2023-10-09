@@ -23,10 +23,14 @@ export class OndeFIcaComponent {
 
   ngOnInit() {
 
-    this.ofertaService.getOndeFicaPorId(this.route.parent.snapshot.params['id'])
+    this.route.parent.params.subscribe((parametros:any) => {
+      this.ofertaService.getOndeFicaPorId(parametros.id)
       .then((resposta: string) => {
         this.ondeFica = resposta
       })
+    })
+
+    
 
   }
 

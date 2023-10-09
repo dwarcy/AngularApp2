@@ -18,11 +18,16 @@ export class OfertaComponent {
 
   ngOnInit() {
 
-    this.ofertasService.getOfertaPorId(this.route.snapshot.params['id'])
+    this.route.params.subscribe((parametros: any) => {
+
+      this.ofertasService.getOfertaPorId(parametros.id)
       .then(( oferta:  Oferta) => {
         this.oferta = oferta
       })
 
+    })
+
+   
   }
 
   ngOnDestroy() {

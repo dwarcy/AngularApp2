@@ -6,6 +6,7 @@ import { DiversaoComponent } from "./diversao/diversao.component";
 import { OfertaComponent } from "./oferta/oferta.component";
 import { ComoUsarComponent } from "./oferta/como-usar/como-usar.component";
 import { OndeFIcaComponent } from "./oferta/onde-fica/onde-fica.component";
+import { OrdemCompraComponent } from "./ordem-compra/ordem-compra.component";
 
 export const MYROUTES: Routes = [
 
@@ -19,6 +20,7 @@ export const MYROUTES: Routes = [
             { path: 'como-usar', component: ComoUsarComponent },
             { path: 'onde-fica', component: OndeFIcaComponent },
         ]
-    }, //cria a rota com a opção de procurar uma oferta especifica
+    }, 
+    { path: 'ordem-compra', component: OrdemCompraComponent }
 
 ]
